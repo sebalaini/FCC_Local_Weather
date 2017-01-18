@@ -4,7 +4,7 @@ var lat;
 var long;
   
   //AJAX request for location
-  $.getJSON("https://ip-api.com/json",function(data2){
+  $.getJSON("http://ip-api.com/json",function(data2){
     lat=data2.lat;
     long=data2.lon;
 
