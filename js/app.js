@@ -32,6 +32,11 @@ var appid = "&APPID=a4b3eb234adddc9781ee965ab3aba708";
 
 if (condition.indexOf("clear") !== -1) {
     $("body").css("background", "url(img/clear.jpg)");
+      $("#temperature_c").css("color", "black");
+      $("#temperature_f").css("color", "black");
+      $("#condition").css("color", "black");      
+      $("h1").css("color", "black");
+      $("#copy").css("color", "black");
   } 
   else if (condition.indexOf("cloud") !== -1){
     $("body").css("background", "url(img/clouds.jpg)");
