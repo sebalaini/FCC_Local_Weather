@@ -1,49 +1,63 @@
 $(document).ready(function(){
+  
+var lat;
+var long;
+var city2;
 
-// LOCATION request
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(function(position) {
-var lat = position.coords.latitude;
-var long = position.coords.longitude;
+  //AJAX request for location
+  $.getJSON("http://ip-api.com/json",function(data2){
+    lat = data2.lat;
+    long = data2.lon;
+    city2 = data2.city
+//    console.log(data2)
 
-var url = "http://api.openweathermap.org/data/2.5/weather?lat=";
+//var url = "http://api.openweathermap.org/data/2.5/weather?lat=";
+var url = "http://api.openweathermap.org/data/2.5/weather?q=";
 var appid = "&APPID=a4b3eb234adddc9781ee965ab3aba708";
   
   //AJAX request weather API
-  $.getJSON( url + lat + "&lon=" + long + appid, function(data) {
+//  $.getJSON( url + lat + "&lon=" + long + appid, function(data) {
+   $.getJSON( url + city2 + appid, function(data) {
 
   var city = data.name;
-  var country = data.sys.country;
   var condition = data.weather[0].description;
   var temperature = data.main.temp;
   var temperature_c = (temperature - 273).toFixed(2); 
   var temperature_f = (((temperature - 273) * 9 / 5) + 32).toFixed(2); 
 
-  $("#city").html(city + ". " + country);
-  $(".temperature_f").html(temperature_f);
-  $(".temperature_c").html(temperature_c);
+  $("#city").html(city);
+  $("#temperature_f").html(temperature_f + " °F");
+  $("#temperature_c").html(temperature_c + " °C");
   $("#condition").html(condition);
 
 if (condition.indexOf("clear") !== -1) {
     $("body").css("background", "url(img/clear.jpg)");
+      $("#temperature_c").css("color", "black");
+      $("#temperature_f").css("color", "black");
       $("#condition").css("color", "black");      
       $("h1").css("color", "black");
       $("#copy").css("color", "black");
   } 
   else if (condition.indexOf("cloud") !== -1){
     $("body").css("background", "url(img/clouds.jpg)");
+      $("#temperature_c").css("color", "black");
+      $("#temperature_f").css("color", "black");
       $("#condition").css("color", "black");      
       $("h1").css("color", "black");
       $("#copy").css("color", "black");
   }
   else if (condition.indexOf("drizzle") !== -1){
     $("body").css("background", "url(img/drizzle.jpg)");
+      $("#temperature_c").css("color", "black");
+      $("#temperature_f").css("color", "black");
       $("#condition").css("color", "black");      
       $("h1").css("color", "black");
       $("#copy").css("color", "black");
   }
   else if (condition.indexOf("mist") !== -1){
     $("body").css("background", "url(img/mist.jpg)");
+      $("#temperature_c").css("color", "black");
+      $("#temperature_f").css("color", "black");
       $("#condition").css("color", "black");      
       $("h1").css("color", "black");
       $("#copy").css("color", "black");
@@ -61,25 +75,24 @@ if (condition.indexOf("clear") !== -1) {
     $("body").css("background", "url(img/default.jpg)");
   }
 
-  $("button.change").click(function() {
-  if ($("#unitC").hasClass("hidden")) {
-    $(".temperature_c").removeClass("hidden");
-    $(".temperature_f").addClass("hidden");
-    $("#unitF").addClass("hidden");
-    $("#unitC").removeClass("hidden");
+
+//  console.log (data);
+    }); //end JSON weather API
+
+  }); //end JSON location
+
+  $(".change_unit").click(function() {
+  if ($("#temperature_f").hasClass("hidden")) {
+    $("#temperature_c").addClass("hidden");
+    $("#temperature_f").removeClass("hidden");
+    $(".change_unit").html("°F to °C");
   } else {
-      $(".temperature_c").addClass("hidden");
-      $(".temperature_f").removeClass("hidden");
-      $("#unitF").removeClass("hidden");
-      $("#unitC").addClass("hidden");
+      $("#temperature_f").addClass("hidden");
+    $("#temperature_c").removeClass("hidden");
+    $(".change_unit").html("°C to °F");
   }
 }); //end change unit click
 
-  console.log (data);
-    }); //end JSON weather API
-
-  });
-}
 
 }); //end ready
 

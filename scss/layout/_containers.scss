@@ -6,11 +6,18 @@ GENERAL
 	font-size: 3em;
 }
 
+.temperature {
+	display: inline-block;
+	margin: 8px;
+}
+
 p {
 	font-size: 1.4em;
 	font-weight: bold;
 }
 
-.hidden {
-	display: none;
+.temperature_div {
+	display: inline-block;
+	background: #478dce;
+	border-radius: 10px;
 }
