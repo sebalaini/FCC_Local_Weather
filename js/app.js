@@ -15,6 +15,8 @@ var appid = "&APPID=a4b3eb234adddc9781ee965ab3aba708";
   var city = data.name;
   var country = data.sys.country;
   var condition = data.weather[0].description;
+  var wind = data.wind.speed;
+  var humidity = data.main.humidity;
   var temperature = data.main.temp;
   var temperature_c = (temperature - 273).toFixed(2); 
   var temperature_f = (((temperature - 273) * 9 / 5) + 32).toFixed(2); 
@@ -23,28 +25,27 @@ var appid = "&APPID=a4b3eb234adddc9781ee965ab3aba708";
   $(".temperature_f").html(temperature_f);
   $(".temperature_c").html(temperature_c);
   $("#condition").html(condition);
+  $("#wind").html("Wind speed: " + wind + " M/s");
+  $("#humidity").html("humidity: " + humidity + "%");
+
 
 if (condition.indexOf("clear") !== -1) {
     $("body").css("background", "url(img/clear.jpg)");
-      $("#condition").css("color", "black");      
       $("h1").css("color", "black");
       $("#copy").css("color", "black");
   } 
   else if (condition.indexOf("cloud") !== -1){
     $("body").css("background", "url(img/clouds.jpg)");
-      $("#condition").css("color", "black");      
       $("h1").css("color", "black");
       $("#copy").css("color", "black");
   }
   else if (condition.indexOf("drizzle") !== -1){
     $("body").css("background", "url(img/drizzle.jpg)");
-      $("#condition").css("color", "black");      
       $("h1").css("color", "black");
       $("#copy").css("color", "black");
   }
   else if (condition.indexOf("mist") !== -1){
     $("body").css("background", "url(img/mist.jpg)");
-      $("#condition").css("color", "black");      
       $("h1").css("color", "black");
       $("#copy").css("color", "black");
   }
