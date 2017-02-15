@@ -6,14 +6,23 @@ GENERAL
 	font-size: 3em;
 }
 
-.temperature {
+.temperature,
+.general {
 	display: inline-block;
 	margin: 8px;
 }
 
-p {
-	font-size: 1.4em;
-	font-weight: bold;
+.general {
+	@include mobile {
+		width: 300px;
+		height: 250px;
+		background-color: rgba(0,0,0,0.5);
+		border-radius: 10px;
+	}
+	@include tablet {
+		width: 500px;
+		height: 300px;
+	}
 }
 
 .temperature_div {
