@@ -6,9 +6,9 @@ if (navigator.geolocation) {
 var lat = position.coords.latitude;
 var long = position.coords.longitude;
 
-var url = "http://api.openweathermap.org/data/2.5/weather?lat=";
+var url = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?lat=";
 var appid = "&APPID=a4b3eb234adddc9781ee965ab3aba708";
-  
+
   //AJAX request weather API
   $.getJSON( url + lat + "&lon=" + long + appid, function(data) {
 
@@ -18,8 +18,8 @@ var appid = "&APPID=a4b3eb234adddc9781ee965ab3aba708";
   var wind = data.wind.speed;
   var humidity = data.main.humidity;
   var temperature = data.main.temp;
-  var temperature_c = (temperature - 273).toFixed(2); 
-  var temperature_f = (((temperature - 273) * 9 / 5) + 32).toFixed(2); 
+  var temperature_c = (temperature - 273).toFixed(2);
+  var temperature_f = (((temperature - 273) * 9 / 5) + 32).toFixed(2);
 
   $("#city").html(city + ". " + country);
   $(".temperature_f").html(temperature_f);
@@ -33,7 +33,7 @@ if (condition.indexOf("clear") !== -1) {
     $("body").css("background", "url(img/clear.jpg)");
       $("h1").css("color", "black");
       $("#copy").css("color", "black");
-  } 
+  }
   else if (condition.indexOf("cloud") !== -1){
     $("body").css("background", "url(img/clouds.jpg)");
       $("h1").css("color", "black");
@@ -83,4 +83,3 @@ if (condition.indexOf("clear") !== -1) {
 }
 
 }); //end ready
-
